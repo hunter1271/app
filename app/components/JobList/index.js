@@ -12,8 +12,6 @@ JobList.defaultProps = {
 };
 
 function JobList({ items, onLoadClick }) {
-  console.log(items);
-
   return (
     <div>
       <p>

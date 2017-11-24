@@ -2,7 +2,6 @@ import React from 'react';
 import { arrayOf, node } from 'prop-types';
 import { compose, pure } from 'recompose';
 import { Container } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
 import Navigation from '../Navigation';
 
 import './layout.scss';
