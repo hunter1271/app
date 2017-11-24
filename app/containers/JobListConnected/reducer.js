@@ -10,9 +10,9 @@ const initialState = fromJS({
 function jobListReducer(state = initialState, action) {
   switch (action.type) {
     case JOB_LIST_REQUEST:
-      return state.set('loading', true);
+      return state.setIn(['loading'], true);
     case JOB_LIST_SUCCESS:
-      return state.set('items', action.items);
+      return state.setIn(['items'], action.items);
     default:
       return state;
   }

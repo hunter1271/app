@@ -5,6 +5,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const cssScopedNamePattern = '[local]';
+
 // Remove this line once the following warning goes away (it was meant for webpack loader authors not users):
 // 'DeprecationWarning: loaderUtils.parseQuery() received a non-string value which can be problematic,
 // see https://github.com/webpack/loader-utils/issues/56 parseQuery() will be replaced with getOptions()
@@ -13,10 +15,14 @@ process.noDeprecation = true;
 
 module.exports = (options) => ({
   entry: options.entry,
-  output: Object.assign({ // Compile into js/build.js
-    path: path.resolve(process.cwd(), 'build'),
-    publicPath: '/',
-  }, options.output), // Merge with env dependent settings
+  output: Object.assign(
+    {
+      // Compile into js/build.js
+      path: path.resolve(process.cwd(), 'build'),
+      publicPath: '/',
+    },
+    options.output
+  ), // Merge with env dependent settings
   module: {
     rules: [
       {
@@ -40,6 +46,35 @@ module.exports = (options) => ({
         test: /\.css$/,
         include: /node_modules/,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.scss/,
+        use: [
+          { loader: 'style-loader', options: { sourceMap: true } },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              modules: true,
+              importLoaders: 1,
+              localIdentName: cssScopedNamePattern,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              plugins: [],
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              paths: [path.resolve(process.cwd(), 'node_modules')],
+            },
+          },
+        ],
       },
       {
         test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
@@ -100,16 +135,8 @@ module.exports = (options) => ({
   ]),
   resolve: {
     modules: ['app', 'node_modules'],
-    extensions: [
-      '.js',
-      '.jsx',
-      '.react.js',
-    ],
-    mainFields: [
-      'browser',
-      'jsnext:main',
-      'main',
-    ],
+    extensions: ['.js', '.jsx', '.react.js'],
+    mainFields: ['browser', 'jsnext:main', 'main'],
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window

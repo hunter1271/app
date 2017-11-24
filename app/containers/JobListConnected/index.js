@@ -7,11 +7,14 @@ import injectSaga from 'utils/injectSaga';
 
 import jobList from '../../components/JobList';
 
+import { jobListRequest } from './actions';
 import { makeSelectItems, makeSelectLoading } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+  onLoadClick: () => dispatch(jobListRequest()),
+});
 
 const mapStateToProps = createStructuredSelector({
   items: makeSelectItems(),

@@ -4,17 +4,23 @@ import { compose, pure } from 'recompose';
 
 JobList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string),
+  onLoadClick: PropTypes.func.isRequired,
 };
 
 JobList.defaultProps = {
-  items: ['first', 'second'],
+  items: ['123'],
 };
 
-function JobList({ items }) {
+function JobList({ items, onLoadClick }) {
+  console.log(items);
+
   return (
     <div>
+      <p>
+        <button onClick={onLoadClick}>Load items</button>
+      </p>
       <h3>Job list here</h3>
-      <ul>{items.map((item) => <li>{item}</li>)}</ul>
+      <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>
     </div>
   );
 }
