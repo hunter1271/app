@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, node } from 'prop-types';
+import { arrayOf, node, oneOfType } from 'prop-types';
 import { compose, pure } from 'recompose';
 import { Container } from 'semantic-ui-react';
 import Navigation from '../Navigation';
@@ -7,7 +7,7 @@ import Navigation from '../Navigation';
 import './layout.scss';
 
 Layout.propTypes = {
-  children: arrayOf(node),
+  children: oneOfType([node, arrayOf(node)]),
 };
 
 Layout.defaultProps = {

@@ -7,21 +7,16 @@
  */
 
 import React from 'react';
-import { Helmet } from 'react-helmet';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
-import Layout from 'components/Layout';
+import SignInPage from 'containers/SignInPage';
+import AppLayout from './AppLayout';
 
 export default function App() {
   return (
-    <Layout>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
-      </Helmet>
-      <Switch>Content here</Switch>
-    </Layout>
+    <Switch>
+      <Route exact path="/signin" component={SignInPage} />
+      <AppLayout />
+    </Switch>
   );
 }
