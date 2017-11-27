@@ -1,6 +1,6 @@
 import React from 'react';
 import { compose, pure } from 'recompose';
-import { Grid, Message, Header, Icon } from 'semantic-ui-react';
+import { Grid, Message, Header, Icon, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import SignInForm from 'containers/SignInForm';
 
@@ -15,7 +15,9 @@ function SignInPage() {
             <Icon name="space shuttle" rotated="counterclockwise" />
             <Header.Content>Please, Sign In</Header.Content>
           </Header>
-          <SignInForm />
+          <Segment>
+            <SignInForm />
+          </Segment>
           <Message className="signin__message">
             Don`t have account?&nbsp;<Link to="/signup">Sing Up</Link>
           </Message>

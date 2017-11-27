@@ -1,27 +1,28 @@
 import React from 'react';
-import { compose, pure } from 'recompose';
+import { compose, pure, withHandlers } from 'recompose';
 import { func, bool } from 'prop-types';
 import { Form, Button } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 import { InputField } from 'react-semantic-redux-form';
 
 SignInForm.propTypes = {
-  handleSubmit: func.isRequired,
-  submiting: bool,
+  onSubmit: func.isRequired,
+  loading: bool,
 };
 
 SignInForm.defaultProps = {
-  submiting: false,
+  loading: false,
 };
 
-function SignInForm({ handleSubmit, submiting }) {
+function SignInForm({ onSubmit, loading }) {
   return (
-    <Form onSubmit={handleSubmit} size="large">
+    <Form size="large">
       <Field
         name="email"
         component={InputField}
         label="E-mail"
         placeholder="john@site.com"
+        disabled={loading}
       />
       <Field
         name="password"
@@ -29,8 +30,15 @@ function SignInForm({ handleSubmit, submiting }) {
         label="Password"
         placeholder="Password"
         type="password"
+        disabled={loading}
       />
-      <Button fluid loading={submiting} color="blue" size="large">
+      <Button
+        loading={loading}
+        onClick={onSubmit}
+        fluid
+        color="blue"
+        size="large"
+      >
         Sign in
       </Button>
     </Form>
@@ -41,4 +49,12 @@ const withReduxForm = reduxForm({
   form: 'signIn',
 });
 
-export default compose(withReduxForm, pure)(SignInForm);
+export default compose(
+  withHandlers({
+    onSubmit: ({ onSubmit, ...values }) => () => {
+      onSubmit({ ...values });
+    },
+  }),
+  withReduxForm,
+  pure
+)(SignInForm);
