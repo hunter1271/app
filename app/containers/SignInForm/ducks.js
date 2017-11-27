@@ -27,7 +27,7 @@ export default ducks.createReducer(
         .set('email', payload.email)
         .set('password', payload.password),
     [SUCCESS]: (state, { payload }) =>
-      state.set('loading', false).set('userData', payload.userData),
+      state.set('loading', false).set('userData', payload),
     [FAILURE]: (state, { payload }) =>
       state.set('loading', false).set('error', payload.error),
   },

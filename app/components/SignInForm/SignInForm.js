@@ -1,8 +1,9 @@
 import React from 'react';
 import { compose, pure, withHandlers } from 'recompose';
+import { connect } from 'react-redux';
 import { func, bool } from 'prop-types';
 import { Form, Button } from 'semantic-ui-react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
 import { InputField } from 'react-semantic-redux-form';
 
 SignInForm.propTypes = {
@@ -16,7 +17,7 @@ SignInForm.defaultProps = {
 
 function SignInForm({ onSubmit, loading }) {
   return (
-    <Form size="large">
+    <Form onSubmit={onSubmit} size="large">
       <Field
         name="email"
         component={InputField}
@@ -32,13 +33,7 @@ function SignInForm({ onSubmit, loading }) {
         type="password"
         disabled={loading}
       />
-      <Button
-        loading={loading}
-        onClick={onSubmit}
-        fluid
-        color="blue"
-        size="large"
-      >
+      <Button type="submit" loading={loading} fluid color="blue" size="large">
         Sign in
       </Button>
     </Form>
@@ -46,15 +41,18 @@ function SignInForm({ onSubmit, loading }) {
 }
 
 const withReduxForm = reduxForm({
-  form: 'signIn',
+  form: 'form/signIn',
 });
 
-export default compose(
-  withHandlers({
-    onSubmit: ({ onSubmit, ...values }) => () => {
-      onSubmit({ ...values });
-    },
-  }),
-  withReduxForm,
-  pure
-)(SignInForm);
+const valueSelector = formValueSelector('form/signIn');
+const withConnect = connect((state) => valueSelector(state, 'email', 'password'));
+
+const bindWithHandlers = withHandlers({
+  onSubmit: ({ onSubmit, ...values }) => () => {
+    onSubmit(values);
+  },
+});
+
+export default compose(withConnect, bindWithHandlers, withReduxForm, pure)(
+  SignInForm
+);
