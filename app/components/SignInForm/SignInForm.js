@@ -46,13 +46,15 @@ const withReduxForm = reduxForm({
 
 const valueSelector = formValueSelector('form/signIn');
 const withConnect = connect((state) => valueSelector(state, 'email', 'password'));
-
-const bindWithHandlers = withHandlers({
+const handlers = {
   onSubmit: ({ onSubmit, ...values }) => () => {
     onSubmit(values);
   },
-});
+};
 
-export default compose(withConnect, bindWithHandlers, withReduxForm, pure)(
-  SignInForm
-);
+export default compose(
+  withConnect,
+  withHandlers(handlers),
+  withReduxForm,
+  pure
+)(SignInForm);
