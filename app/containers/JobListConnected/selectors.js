@@ -2,10 +2,10 @@ import { createSelector } from 'reselect';
 
 const selectJobList = (globalState) => globalState.get('jobList');
 
-const makeSelectItems = () =>
-  createSelector(selectJobList, (jobListState) => jobListState.get('items'));
+export const itemsSelector = createSelector(selectJobList, (jobList) =>
+  jobList.get('items').toJS()
+);
 
-const makeSelectLoading = () =>
-  createSelector(selectJobList, (jobListState) => jobListState.get('loading'));
-
-export { selectJobList, makeSelectItems, makeSelectLoading };
+export const loadingSelector = createSelector(selectJobList, (jobList) =>
+  jobList.get('loading')
+);
