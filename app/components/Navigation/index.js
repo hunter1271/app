@@ -15,6 +15,9 @@ function Navigation() {
       <NavLink to="signup" className="item">
         Sign up
       </NavLink>
+      <NavLink to="old" className="item">
+        Old page
+      </NavLink>
     </Menu>
   );
 }

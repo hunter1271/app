@@ -23,6 +23,4 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const withReducer = injectReducer({ key: 'jobList', reducer });
 const withSaga = injectSaga({ key: 'jobList', saga });
 
-saga();
-
 export default compose(withReducer, withSaga, withConnect)(JobList);
