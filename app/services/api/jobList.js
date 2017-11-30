@@ -5,5 +5,5 @@ const jobList = (axios) => () =>
     .catch((error) => ({ error }));
 
 export default (axios) => ({
-  signIn: jobList(axios),
+  jobList: jobList(axios),
 });
