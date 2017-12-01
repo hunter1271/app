@@ -7,7 +7,9 @@ function HomePage() {
   return (
     <Grid>
       <Grid.Row>
-        <JobList />
+        <Grid.Column>
+          <JobList />
+        </Grid.Column>
       </Grid.Row>
     </Grid>
   );

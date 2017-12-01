@@ -12,9 +12,24 @@ module.exports = function createApiRouter(express) {
   router.get('/joblist', (req, res) => {
     res.json({
       items: [
-        { id: 1, name: 'Php developer', company: 'AWS Dev' },
-        { id: 2, name: 'Java developer', company: 'Apple' },
-        { id: 3, name: 'REACT developer', company: 'Facebook' },
+        {
+          id: 1,
+          name: 'Php developer',
+          company: 'AWS Dev',
+          location: 'Innopolis, Tatarstan',
+        },
+        {
+          id: 2,
+          name: 'Java developer',
+          company: 'Apple',
+          location: 'Innopolis, Tatarstan',
+        },
+        {
+          id: 3,
+          name: 'REACT developer',
+          company: 'Facebook',
+          location: 'Innopolis, Tatarstan',
+        },
       ],
     });
   });

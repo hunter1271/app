@@ -11,7 +11,7 @@ function JobListItem({ job }) {
   return (
     <Card fluid>
       <Card.Content>
-        <Card.Header>{job.title}</Card.Header>
+        <Card.Header>{job.name}</Card.Header>
         <Card.Meta>
           {job.company} {job.location}
         </Card.Meta>
