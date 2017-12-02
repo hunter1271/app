@@ -1,0 +1,8 @@
+import React from 'react';
+import { compose, pure } from 'recompose';
+
+function MainPage() {
+  return <h1>MainPage</h1>;
+}
+
+export default compose(pure)(MainPage);
