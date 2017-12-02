@@ -1,7 +1,7 @@
 import React from 'react';
 import { compose, pure } from 'recompose';
 import { Form, Button, Segment } from 'semantic-ui-react';
-import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form/immutable';
 import { InputField } from 'react-semantic-redux-form';
 
 function JobForm() {

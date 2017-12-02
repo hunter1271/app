@@ -7,7 +7,7 @@ import injectSaga from 'utils/injectSaga';
 
 import JobList from '../../components/JobList';
 
-import reducer, { request } from './ducks';
+import reducer from './ducks';
 import { itemsSelector, loadingSelector } from './selectors';
 import saga from './sagas';
 
