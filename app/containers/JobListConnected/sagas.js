@@ -2,8 +2,6 @@ import { call, getContext, put } from 'redux-saga/effects';
 import { success } from './ducks';
 
 export default function* () {
-  // yield takeLatest(REQUEST, requestSaga);
-
   yield call(requestSaga);
 }
 

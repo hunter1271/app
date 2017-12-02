@@ -18,6 +18,9 @@ function Navigation() {
       <NavLink to="old" className="item">
         Old page
       </NavLink>
+      <NavLink to="create" className="item">
+        Create job
+      </NavLink>
     </Menu>
   );
 }
