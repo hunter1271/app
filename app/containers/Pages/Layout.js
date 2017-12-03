@@ -1,28 +1,48 @@
 import React from 'react';
 import { compose, pure } from 'recompose';
-import { Switch, Route, NavLink } from 'react-router-dom';
-import { Container, Menu } from 'semantic-ui-react';
+import { Switch, Route, NavLink, Link } from 'react-router-dom';
+import { Container, Menu, Button, Icon, Dropdown } from 'semantic-ui-react';
 
 import MainPage from './MainPage';
 
 function Layout() {
   return (
     <div>
-      <Container>
-        <Menu>
-          <Menu.Header>Hidev</Menu.Header>
-          <Menu.Item>
-            <NavLink to="">Jobs</NavLink>
-          </Menu.Item>
-          <Menu.Item>
-            <NavLink to="">Companies</NavLink>
-          </Menu.Item>
-          <Menu.Item>
-            <NavLink to="">Techologies</NavLink>
-          </Menu.Item>
+      <Container fluid>
+        <Menu size="huge" borderless>
+          <Container>
+            <Link className="item header" to="/">
+              <Icon size="large" name="space shuttle" />
+              HiDev
+            </Link>
+            <NavLink className="item" to="/jobs">
+              Jobs
+            </NavLink>
+            <NavLink className="item" to="/companies">
+              Companies
+            </NavLink>
+            <NavLink className="item" to="/tech">
+              Techologies
+            </NavLink>
+
+            <Menu.Menu position="right">
+              <Dropdown item text="Language">
+                <Dropdown.Menu>
+                  <Dropdown.Item>English</Dropdown.Item>
+                  <Dropdown.Item>Russian</Dropdown.Item>
+                  <Dropdown.Item>Spanish</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+              <Menu.Item>
+                <Button primary color="teal">
+                  Sign Up
+                </Button>
+              </Menu.Item>
+            </Menu.Menu>
+          </Container>
         </Menu>
       </Container>
-      <Container>
+      <Container fluid>
         <Switch>
           <Route path="" component={MainPage} />
         </Switch>
