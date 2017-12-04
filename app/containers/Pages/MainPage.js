@@ -15,8 +15,13 @@ function MainPage() {
       </Segment>
       <Segment basic>Content here</Segment>
       <Grid container padded="vertical">
-        <Grid.Row>
-          <Grid.Column>1232</Grid.Column>
+        <Grid.Row stretched>
+          <Grid.Column width="12">
+            <Segment padded={false}>Content</Segment>
+          </Grid.Column>
+          <Grid.Column width="4">
+            <Segment padded={false}>Sidebare</Segment>
+          </Grid.Column>
         </Grid.Row>
       </Grid>
     </Container>
