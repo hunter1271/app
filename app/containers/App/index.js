@@ -9,14 +9,14 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Layout from 'containers/Pages/Layout';
+import Pages from 'containers/Pages';
 import SignInPage from 'containers/SignInPage';
 import AppLayout from './AppLayout';
 
 export default function App() {
   return (
     <Switch>
-      <Route path="/pages" component={Layout} />
+      <Route path="/pages" component={Pages} />
       <Route exact path="/signin" component={SignInPage} />
       <AppLayout />
     </Switch>

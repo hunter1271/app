@@ -15,8 +15,8 @@ function Navigation() {
       <NavLink to="signup" className="item">
         Sign up
       </NavLink>
-      <NavLink to="old" className="item">
-        Old page
+      <NavLink to="pages" className="item">
+        Pages
       </NavLink>
       <NavLink to="create" className="item">
         Create job
