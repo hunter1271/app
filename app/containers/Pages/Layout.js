@@ -4,6 +4,7 @@ import { Switch, Route, NavLink, Link } from 'react-router-dom';
 import { Container, Menu, Button, Icon, Dropdown } from 'semantic-ui-react';
 
 import MainPage from './MainPage';
+import AccountLayout from './AccountLayout';
 
 function Layout() {
   return (
@@ -44,7 +45,8 @@ function Layout() {
       </Container>
       <Container fluid>
         <Switch>
-          <Route path="" component={MainPage} />
+          <Route exact path="/account" component={AccountLayout} />
+          <Route strict path="" component={MainPage} />
         </Switch>
       </Container>
     </div>

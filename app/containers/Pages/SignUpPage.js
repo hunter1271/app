@@ -1,5 +1,6 @@
 import React from 'react';
 import { compose, pure } from 'recompose';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Divider,
@@ -9,30 +10,52 @@ import {
   Input,
   Header,
   Icon,
+  Grid,
+  Message,
 } from 'semantic-ui-react';
 
 function SignUpPage() {
   return (
     <Container text>
-      <Header as="h2" textAlign="center" icon>
-        <Icon name="space shuttle" rotated="counterclockwise" />
-        <Header.Content>Please, Sign Up</Header.Content>
-      </Header>
-      <Segment>
-        <Form>
-          <Form.Field
-            control={Input}
-            label="Company name"
-            placeholder="Company name"
-          />
-          <Form.Field control={Input} label="Email" placeholder="Email" />
-          <Form.Field control={Input} label="Password" placeholder="Password" />
-          <Divider hidden />
-          <Button fluid primary size="large" type="submit">
-            Sign Up
-          </Button>
-        </Form>
-      </Segment>
+      <Grid verticalAlign="middle">
+        <Grid.Row>
+          <Header as="h2" icon textAlign="center">
+            <Icon name="space shuttle" />
+            <Header.Content>
+              Please, Sign Up
+              <Header.Subheader>Fill the form and join to us!</Header.Subheader>
+            </Header.Content>
+          </Header>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
+            <Segment>
+              <Form size="large">
+                <Form.Field
+                  control={Input}
+                  label="Company name"
+                  placeholder="Company name"
+                />
+                <Form.Field control={Input} label="Email" placeholder="Email" />
+                <Form.Field
+                  control={Input}
+                  label="Password"
+                  placeholder="Password"
+                  type="password"
+                />
+                <Divider hidden />
+                <Button fluid primary size="large" type="submit">
+                  Sign Up
+                </Button>
+              </Form>
+            </Segment>
+            <Message style={{ textAlign: 'center' }}>
+              Already signed up?&nbsp;<Link to="signin">Sign in here</Link>&nbsp;instead.
+            </Message>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row />
+      </Grid>
     </Container>
   );
 }
